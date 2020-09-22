@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/bulmaswatch/superhero/bulmaswatch.min.css">
+    <link rel="stylesheet" href="stylesheets/style.css">
+</head>
+<%- include('partials/header'); %>
+
+<div class="container">
+    <div class="columns is-vcentered">
+        <div class="column is-half">
+            <div class="content has-text-centered">
+              <% if(error && error.length > 0) { %>
+                <p class="subtitle has-text-centered has-text-danger has-text-3">
+                  <%= error %>
+                </p>
+              <% } %>
+                <% if(success && success.length > 0) { %>
+                  <p class="subtitle has-text-centered has-text-warning has-text-3">
+                    <%= success %>
+                  </p>
+                <% } %>
+                <form action="/login" method="POST">
+                    <div class="field">
+                        <label class="label has-text-light">NAME :</label>
+                        <div class="control">
+                          <input class="input is-danger" type="text" placeholder="username" name="username">
+                        </div>
+                      </div>
+                      <div class="field">
+                        <label class="label has-text-light">PASSWORD :</label>
+                        <div class="control">
+                          <input class="input is-danger" type="password" placeholder="password" name="password">
+                        </div>
+                      </div>
+                      <div class="field is-grouped is-grouped-centered">
+                        <div class="control">
+                          <button class="button is-danger" type="submit">Login</button>
+                        </div>
+                      </div>
+                </form>
+                <p class="subtitle has-text-6 has-text-light is-pulled-left">No Account ? <a href="/signup" class="has-text-success ">Sign Up</a></p>
+                <p class="subtitle has-text-6 has-text-light is-pulled-right">Forgot your password ?<a href="/forgot" class="has-text-danger ">Change password</a></p>
+            </div>
+        </div>
+        <div class="column is-half">
+            <img src="img/gifh.gif" alt="gif home page">
+        </div>
+    </div>
+</div>

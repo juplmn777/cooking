@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reset password</title>
+    <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/bulmaswatch/superhero/bulmaswatch.min.css">
+    <link rel="stylesheet" href="stylesheets/style.css">
+</head>
+<%- include('partials/header'); %>
+<body>
+    <section class="hero">
+        <div class="hero-body">
+    <h1 class="title has-text-centered has-text-light">CHOOSE YOUR NEW PASSWORD</h1>
+</div>
+</section>
+    <div class="container">
+        <div class="columns">
+            <div class="column">
+                <div class="content has-text-centered">
+                    <form action="/reset/<%= token %>" method="POST">
+                        <div class="field">
+                            <label class="label has-text-light">NEW PASSWORD :</label>
+                            <div class="control">
+                              <input class="input is-primary" type="password" placeholder="enter your password" name="password">
+                            </div>
+                          </div>
+                          <div class="field">
+                            <label class="label has-text-light">CONFIRM PASSWORD :</label>
+                            <div class="control">
+                              <input class="input is-primary" type="password" placeholder="confirm your new password..." name="password2">
+                            </div>
+                          </div>
+                          <div class="field is-grouped is-grouped-centered">
+                            <div class="control">
+                              <button class="button is-info" type="submit">Reset</button>
+                            </div>
+                          </div>
+                    </form>
+                    <p class="subtitle has-text-6 has-text-light is-pulled-left">No Account ? <a href="/signup" class="has-text-primary ">Sign Up</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>

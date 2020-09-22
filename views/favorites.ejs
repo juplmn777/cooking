@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= currentUser.username %>'s dashboard</title>
+  <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
+  <link rel="stylesheet" href="https://unpkg.com/bulmaswatch/superhero/bulmaswatch.min.css">
+  <link rel="stylesheet" href="stylesheets/style.css">
+</head>
+<header>
+  <nav class="navbar is-transparent" role="navigation" aria-label="main navigation">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="/">
+        <p class="title is-size-4 has-text-light maintitle">
+          GrandMa's Kitchen
+        </p>
+      </a>
+
+      <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false"
+        data-target="navbarBasicExample">
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+      </a>
+    </div>
+
+    <div id="navbarBasicExample" class="navbar-menu">
+      <div class="navbar-start">
+        <a class="navbar-item has-text-6 has-text-success connected-user" href="/dashboard">
+          Logged as  <%= currentUser.username.toUpperCase() %>
+        </a>
+      </div>
+      <div class="navbar-end">
+        <div class="navbar-item">
+          <a class="button is-outlined is-light" href="/dashboard/myrecipes">
+            Recipes
+          </a>
+        </div>
+        <div class="navbar-item">
+          <a class="button is-outlined is-light" href="/schedule">
+            Schedule
+          </a>
+        </div>
+      </div>
+      <div class="navbar-item">
+        <div class="buttons">
+          <a class="button is-outlined is-danger" href="/about">
+            About
+          </a>
+          <a class="button is-outlined is-warning is-rounded" href="/logout">
+            Log out
+          </a>
+        </div>
+      </div>
+    </div>
+    </div>
+  </nav>
+</header>
+<body>
+    <section class="section  has-text-centered">
+      <h1 class="title has-text-centered has-text-warning is-size-3"><%= currentUser.username %> <span
+        class="has-text-light">'s Favourites Recipes</span></h1>
+        <a href="/dashboard/favorites/newfavorite" class="button is-success"><i class="fas fa-plus"></i>&nbsp;Add a Favourite Recipe</a>
+    </section>
+    <% if(success && success.length > 0) { %>
+      <p class="subtitle has-text-centered has-text-success is-size-6">
+          <i class="far fa-thumbs-up"></i>&nbsp;<%= success %>
+      </p>
+    <% } %>
+    <div class="container">
+      <div class="columns is-multiline">
+        
+        <% favourite.forEach((favourite) => { %>
+          <div class="column is-vcentered is-one-quarter">
+              <div class="card">
+                  <div class="card-header">
+                      <p class="card-header-title subtitle is-centered has-text-warning">
+                          <%= favourite.title.toUpperCase(); %>
+                      </p>
+                  </div>
+                  <div class="card-image">
+                      <figure class="image is-3by2">
+                          <img src="<%= favourite.image %> " alt="favourite recipe image">
+                      </figure>
+                  </div>
+                  <div class="card-content">
+                      <div class="content">
+                        <div class="field has-text-centered">
+                          <p class="subtitle has-text-light is-size-6">
+                            <%= favourite.description %> 
+                          </p>
+                        </div>
+                        <div class="field has-text-centered">
+                          <form action="/dashboard/favorites/<%= favourite._id %>?_method=DELETE" method="POST">
+                              <button type="submit" class="button is-danger is-outlined is-medium">
+                                  Delete
+                              </button>
+                          </form>
+                        </div>
+                      </div>
+                  </div>
+                  <footer class="card-footer has-text-centered">
+                    <a href="#" class="card-footer-item has-text-light is-size-7">published : &nbsp;<strong class="has-text-info"><%= favourite.date.toLocaleDateString('fr-FR') %> </strong></a>
+                  </footer>
+              </div>
+          </div>
+          <% }) %>
+    </div>
+</body>

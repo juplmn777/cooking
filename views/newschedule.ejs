@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= currentUser.username %>'s dashboard</title>
+  <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
+  <link rel="stylesheet" href="https://unpkg.com/bulmaswatch/superhero/bulmaswatch.min.css">
+  <link rel="stylesheet" href="../public/stylesheets/style.css">
+</head>
+<header>
+  <nav class="navbar is-transparent" role="navigation" aria-label="main navigation">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="/">
+        <p class="title is-size-4 has-text-light maintitle">
+          GrandMa's Kitchen
+        </p>
+      </a>
+
+      <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false"
+        data-target="navbarBasicExample">
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+      </a>
+    </div>
+
+    <div id="navbarBasicExample" class="navbar-menu">
+      <div class="navbar-start">
+        <a class="navbar-item has-text-6 has-text-success connected-user" href="/dashboard">
+          Logged as  <%= currentUser.username.toUpperCase() %>
+        </a>
+      </div>
+      <div class="navbar-end">
+        <div class="navbar-item">
+          <a class="button is-outlined is-light" href="/dashboard/myrecipes">
+            Recipes
+          </a>
+        </div>
+        <div class="navbar-item">
+          <a class="button is-outlined is-light" href="/dashboard/favorites">
+            Favorites
+          </a>
+        </div>
+        <div class="navbar-item">
+          <a class="button is-outlined is-light" href="/dashboard/schedule">
+            Schedule
+          </a>
+        </div>
+      </div>
+      <div class="navbar-item">
+        <div class="buttons">
+          <a class="button is-outlined is-danger" href="/about">
+            About
+          </a>
+          <a class="button is-outlined is-warning is-rounded" href="/logout">
+            Log out
+          </a>
+        </div>
+      </div>
+    </div>
+    </div>
+  </nav>
+</header>
+<body>
+    <div class="container has-text-centered">
+  <section class="section">
+    <h1 class="title has-text-centered has-text-warning is-size-3">New Schedule</h1>
+  </section>
+  
+    <form action="/dashboard/schedule" method="POST">
+        <div class="field">        
+            <label class="label">Recipe Name :</label>
+            <input type="text" name="recipename" class="input is-info" placeholder="your recipe name...">       
+        </div>
+      <div class="field">        
+          <label class="label">Cooking time :</label>
+          <input type="text" name="cookingtime" class="input is-info" placeholder="your recipe cooking-time...">       
+      </div>
+      <div class="field">        
+          <label class="label">Schedule Date :</label>
+          <input type="date" name="scheduledate" class="input is-info" placeholder="your schedule Date...">        
+      </div>
+      <div class="field is-grouped is-grouped-centered">
+        <div class="control">
+          <button class="button is-success" type="submit"><i class="fas fa-check"></i>&nbsp;submit</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</body>

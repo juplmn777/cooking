@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= currentUser.username %>'s dashboard</title>
+    <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/bulmaswatch/superhero/bulmaswatch.min.css">
+    <link rel="stylesheet" href="stylesheets/style.css">
+</head>
+<header>
+    <nav class="navbar is-transparent" role="navigation" aria-label="main navigation">
+        <div class="navbar-brand">
+            <a class="navbar-item" href="/">
+                <p class="title is-size-4 has-text-light maintitle">
+                    GrandMa's Kitchen
+                </p>
+            </a>
+
+            <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false"
+                data-target="navbarBasicExample">
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+            </a>
+        </div>
+
+        <div id="navbarBasicExample" class="navbar-menu">
+            <div class="navbar-start">
+                <a class="navbar-item has-text-6 has-text-success connected-user" href="/dashboard">
+                    Logged as <%= currentUser.username.toUpperCase() %>
+                </a>
+            </div>
+            <div class="navbar-end">
+                <div class="navbar-item">
+                    <a class="button is-outlined is-light" href="/dashboard/myrecipes">
+                        Recipes
+                    </a>
+                </div>
+                <div class="navbar-item">
+                    <a class="button is-outlined is-light" href="/favorites">
+                        Favorites
+                    </a>
+                </div>
+                <div class="navbar-item">
+                    <a class="button is-outlined is-light" href="/schedule">
+                        Schedule
+                    </a>
+                </div>
+            </div>
+            <div class="navbar-item">
+                <div class="buttons">
+                    <a class="button is-outlined is-danger" href="/about">
+                        About
+                    </a>
+                    <a class="button is-outlined is-warning is-rounded" href="/logout">
+                        Log out
+                    </a>
+                </div>
+            </div>
+        </div>
+        </div>
+    </nav>
+</header>
+
+<body>
+
+    <div class="container">
+        <div class="columns">
+            <div class="column is-half is-offset-one-quarter">
+                <section class="section">
+                <div class="box">
+                    <article class="media">
+                        <div class="media-left">
+                            <figure class="image is-128x128">
+                                <img src="<%= recipe.image; %>" alt="Recipe Image" class="mediaImage">
+                            </figure>
+                        </div>
+                        <div class="media-content">
+                            <div class="content">
+                                <h3 class="title has-text-primary is-size-4">
+                                    <strong><%= recipe.name.toUpperCase();%></strong>
+                                </h3>
+                                <a class="button is-success is-outlined" href="/dashboard/myrecipes/<%= recipe._id %>/newingredient"><i class="fas fa-plus"></i>&nbsp;
+                                    Add a New Ingredient
+                                </a>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </div>
+        <% if(success && success.length > 0) { %>
+            <p class="subtitle has-text-centered has-text-success is-size-4">
+                <i class="far fa-thumbs-up"></i>&nbsp;<%= success %>
+            </p>
+          <% } %>
+        <div class="box">
+        </section>
+            <table class="table is-fullwidth is-striped is-bordered">
+                <thead>
+                    <tr>
+                        <th class="subtitle has-text-centered has-text-light is-uppercase">Ingredient name</th>
+                        <th class="subtitle has-text-centered has-text-light is-uppercase">Best Dish with</th>
+                        <th class="subtitle has-text-centered has-text-light is-uppercase">Quantity</th>
+                        <th class="subtitle has-text-centered has-text-light is-uppercase">Option 1</th>
+                        <th class="subtitle has-text-centered has-text-light is-uppercase">Option 2</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% ingredient.forEach((ingredient) => { %>
+                        <tr>
+                            <td class="subtitle has-text-centered has-text-light is-size-5"><%= ingredient.name %></td>
+                            <td class="subtitle has-text-centered has-text-light is-size-5"><%= ingredient.bestDishWith %></td>
+                            <td class="subtitle has-text-centered has-text-light is-size-5"><%= ingredient.quantity %></td>
+                            <td class="has-text-centered">
+                                <form action="/dashboard/myrecipes/<%= recipe._id %>/<%= ingredient._id %>?_method=DELETE" method="POST">
+                                    <input type="hidden" name="_method">
+                                    <div class="field">
+                                        <button type="submit" class="button is-danger">
+                                            Delete
+                                        </button>
+                                    </div>
+                                </form>
+                            </td>
+                            <td class="has-text-centered">
+                                <form action="/dashboard/myrecipes/<%= recipe._id %>/<%= ingredient._id %>/edit" method="POST">
+                                    <button type="submit" class="button is-warning is-outlined">Edit</button>
+                                </form>
+                            </td>
+                        </tr>
+                    <% }) %>
+                </tbody>
+            </table>
+        </div>
+</body>

@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= currentUser.username %>'s dashboard</title>
+  <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
+  <link rel="stylesheet" href="https://unpkg.com/bulmaswatch/superhero/bulmaswatch.min.css">
+  <link rel="stylesheet" href="stylesheets/style.css">
+</head>
+<header>
+  <nav class="navbar is-transparent" role="navigation" aria-label="main navigation">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="/">
+        <p class="title is-size-4 has-text-light maintitle">
+          GrandMa's Kitchen
+        </p>
+      </a>
+
+      <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false"
+        data-target="navbarBasicExample">
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+      </a>
+    </div>
+
+    <div id="navbarBasicExample" class="navbar-menu">
+      <div class="navbar-start">
+        <a class="navbar-item has-text-6 has-text-success connected-user" href="/dashboard">
+          Logged as  <%= currentUser.username.toUpperCase() %>
+        </a>
+      </div>
+      <div class="navbar-end">
+        <div class="navbar-item">
+          <a class="button is-outlined is-light" href="/dashboard/myrecipes">
+            Recipes
+          </a>
+        </div>
+        <div class="navbar-item">
+          <a class="button is-outlined is-light" href="favorites">
+            Favorites
+          </a>
+        </div>
+        <div class="navbar-item">
+          <a class="button is-outlined is-light" href="/dashboard/schedule">
+            Schedule
+          </a>
+        </div>
+      </div>
+      <div class="navbar-item">
+        <div class="buttons">
+          <a class="button is-outlined is-danger" href="/about">
+            About
+          </a>
+          <a class="button is-outlined is-warning is-rounded" href="/logout">
+            Log out
+          </a>
+        </div>
+      </div>
+    </div>
+    </div>
+  </nav>
+</header>
+
+<body>
+  <section class="section">
+    <h1 class="title has-text-centered has-text-warning is-size-3"><%= currentUser.username %> <span
+        class="has-text-light">'s Dashboard</span></h1>
+  </section>
+  <div class="container">
+    <div class="columns is-vcentered">
+      <div class="column is-one-third">
+        <div class="box dashboard-box">
+          <aside class="menu has-text-centered">
+            <p class="menu-label has-text-light is-size-1">
+              Recipes
+            </p>
+            <ul class="menu-list">
+              <li>
+                <a href="/dashboard/newrecipe" class="title has-text-light is-4 menu-list-link">
+                  <i class="fas fa-plus"></i> Add a recipe
+                </a>
+              </li>
+              <li>
+                <a href="/dashboard/myrecipes" class="title has-text-light is-4 menu-list-link">
+                  <i class="far fa-eye"></i> Show recipes
+                </a>
+              </li>
+            </ul>
+          </aside>
+        </div>
+      </div>
+      <div class="column is-one-third">
+        <div class="box dashboard-box">
+          <aside class="menu has-text-centered">
+            <p class="menu-label has-text-light is-size-1">
+              Favorites
+            </p>
+            <ul class="menu-list">
+              <li>
+                <a href="/dashboard/favorites/newfavorite" class="title has-text-light is-4 menu-list-link">
+                  <i class="fas fa-plus"></i> Add a favorite
+                </a>
+              </li>
+              <li>
+                <a href="/dashboard/favorites" class="title has-text-light is-4 menu-list-link">
+                  <i class="far fa-eye"></i> Show favorites
+                </a>
+              </li>
+            </ul>
+          </aside>
+        </div>
+      </div>
+      <div class="column is-one-third">
+        <div class="box dashboard-box">
+          <aside class="menu has-text-centered">
+            <p class="menu-label has-text-light is-size-1">
+              Schedule
+            </p>
+            <ul class="menu-list">
+              <li>
+                <a href="/dashboard/schedule/newschedule" class="title has-text-light is-4 menu-list-link">
+                  <i class="fas fa-plus"></i> Add a schedule
+                </a>
+              </li>
+              <li>
+                <a href="/dashboard/schedule" class="title has-text-light is-4 menu-list-link">
+                  <i class="far fa-eye"></i> Show schedules
+                </a>
+              </li>
+            </ul>
+          </aside>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>

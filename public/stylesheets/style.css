@@ -1,0 +1,40 @@
+@font-face{
+    font-family:"dragon-kids";
+    src:url(../fonts/vampire_wars/Vampire\ Wars.otf);
+}@font-face{
+    font-family: "dead-revolution";
+    src:url(../fonts/dead_revolution/Dead\ Revolution.otf);
+}
+
+p.maintitle {
+    font-family: dead-revolution;
+}
+
+h1{
+    font-family: dead-revolution;
+}
+
+h3{
+    font-family: vampire;
+}
+
+.connected-user{
+    font-family: dead-revolution;
+}
+.dashboard-box{
+    border: 1px solid #f5f5f5;
+}
+.menu-label{
+    font-family: dead-revolution;
+}
+a.menu-list-link:hover{
+     color:#ec971f !important;
+}
+img.mediaImage {
+    border: 1px solid #f5f5f5;
+}
+
+input.input::placeholder{
+    color: #363636;
+    opacity: 1;
+}
